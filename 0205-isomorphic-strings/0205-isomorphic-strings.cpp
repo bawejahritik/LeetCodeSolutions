@@ -7,11 +7,8 @@ public:
         for(int i=0; i<s.size(); i++){
                 check[s[i]] = t[i];
                 check1[t[i]] = s[i];
+            
         }
-//         for(int i=0; i<s.size(); i++){
-                
-//         }
-        
         for(int i=0; i<s.size(); i++){
             if(check[s[i]] != t[i] || check1[t[i]] != s[i]) return false;
         }
