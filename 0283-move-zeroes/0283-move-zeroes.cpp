@@ -10,9 +10,12 @@ public:
             }
             else if(zero > 0){
                 nums[i-zero] = nums[i];
-                nums[i] = 0;
             }
             i++;
+        }
+        
+        for(int i=nums.size()-zero; i<nums.size(); i++){
+            nums[i]=0;
         }
         
     }
