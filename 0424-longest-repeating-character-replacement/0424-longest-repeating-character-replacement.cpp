@@ -15,10 +15,11 @@ public:
         vector<int> counter(26, 0);
         int li = 0;
         int ri = 0;
+        int maxF = 0;
         
         while(ri < s.size()){
             counter[s[ri]-'A']++;
-            int maxF = getMaxF(counter);
+            maxF = max(maxF, counter[s[ri]-'A']);
             
             if((ri-li+1) - maxF > k){
                 counter[s[li]-'A']--;
