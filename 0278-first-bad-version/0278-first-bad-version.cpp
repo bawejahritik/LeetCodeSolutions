@@ -7,19 +7,18 @@ public:
         int si = 1;
         int ei = n;
         int mid = (ei-si)/2;
-        int minBadVersion;
+        int ans = 0;
         
-        while(si <= ei){
+        while(si<=ei){
             if(isBadVersion(mid)){
-                minBadVersion = mid;
+                ans = mid;
                 ei = mid-1;
             }else{
                 si = mid+1;
             }
-            
             mid = si + (ei-si)/2;
         }
         
-        return minBadVersion;
+        return ans;
     }
 };
