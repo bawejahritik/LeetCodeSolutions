@@ -4,18 +4,14 @@ public:
         string ans = "";
         int i=0, j=0;
         
-        while(i<word1.size() && j<word2.size()){
+        while(i<word1.length() && j<word2.length()){
             ans += word1[i++];
             ans += word2[j++];
         }
         
-        if(i<word1.size()){
-            ans += word1.substr(i);
-        }
+        if(i < word1.size()) ans += (word1.substr(i));
         
-        if(j<word2.size()){
-            ans += word2.substr(j);
-        }
+        if(j < word2.size()) ans += (word2.substr(j));
         
         return ans;
     }
