@@ -5,8 +5,15 @@ class Solution:
         res = []
         
         for i in range(0, len(nums)-2):
+            
+            if nums[i]>0:
+                break
+            
             left = i+1
             right = len(nums)-1
+            
+            if i>0 and nums[i]==nums[i-1]:
+                continue
             
             while left<right:
                 total = nums[i] + nums[left] + nums[right]
@@ -15,15 +22,11 @@ class Solution:
                 elif total>0:
                     right-=1
                 else:
-                    temp = [0]*3
-                    temp[0] = nums[i]
-                    temp[1] = nums[left]
-                    temp[2] = nums[right]
-                    temp.sort()
-                    if temp not in res:
-                        res.append(temp)
+                    res.append([nums[i], nums[left], nums[right]])
                     left += 1
                     right -= 1
+                    while nums[left]==nums[left-1] and left<right:
+                        left += 1
         
         print(res)
         
