@@ -4,10 +4,9 @@ class Solution:
         maxProfit = 0
         
         for price in prices:
-            curr = price - minYet
-            maxProfit = max(maxProfit, curr)
+            if price < minYet:
+                minYet = price
             
-            minYet = min(minYet, price)
-        
+            maxProfit = max(maxProfit, price-minYet)
         
         return maxProfit
