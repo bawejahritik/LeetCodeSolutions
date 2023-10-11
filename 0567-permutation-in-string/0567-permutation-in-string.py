@@ -7,13 +7,11 @@ class Solution:
         ls1 = [0]*26
         ls2 = [0]*26
         
-        left, right = 0, len(s1)
-        
-        for i in s1:
-            ls1[ord(i)-ord("a")] += 1
+        left = 0
         
         for i in range(len(s1)):
-            ls2[ord(s2[i])-ord("a")] += 1
+            ls1[ord(s1[i])-ord("a")] += 1
+            ls2[ord(s2[i])-ord("a")] += 1            
         
         if ls1==ls2:
             return True
