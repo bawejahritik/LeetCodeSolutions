@@ -9,9 +9,8 @@ class Solution:
             if stack:
                 t1 = (target-stack[-1][0])/stack[-1][1]
                 t2 = (target-p)/s
-            if stack and t1>=t2:
-                continue
-            else:
+            if not (stack and t1>=t2):
                 stack.append([p, s])
+                
         
         return len(stack)
