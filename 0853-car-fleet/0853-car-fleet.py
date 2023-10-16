@@ -6,11 +6,10 @@ class Solution:
         pairs.sort(reverse=True)
         
         for p, s in pairs:
-            if stack:
-                t1 = (target-stack[-1][0])/stack[-1][1]
-                t2 = (target-p)/s
-            if not (stack and t1>=t2):
-                stack.append([p, s])
+            stack.append((target-p)/s)
+            
+            if len(stack)>=2 and stack[-1]<=stack[-2]:
+                stack.pop()
                 
         
         return len(stack)
