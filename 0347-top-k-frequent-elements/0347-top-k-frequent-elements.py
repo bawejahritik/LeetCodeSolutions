@@ -13,7 +13,6 @@ class Solution:
         res = []
         
         for i in range(len(freq)-1, 0, -1):
-            print(freq[i])
             for n in freq[i]:
                 res.append(n)
                 if len(res) == k:
