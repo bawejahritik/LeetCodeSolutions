@@ -1,23 +1,23 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        openB = "({["
-        closeB = ")}]"
+        stack =  []
         
-        for c in s:
-            if(c in openB):
-                stack.append(c)
-            else:
-                if len(stack)==0:
-                    return False
-                if c  == ")" and stack[-1] == "(":
-                    stack.pop(-1)
-                elif c == "}" and stack[-1] == "{":
-                    stack.pop(-1)
-                elif c == "]" and stack[-1] == "[":
-                    stack.pop(-1)
+        openB = "({["
+        closeB = ")]}"
+        
+        for brack in s:
+            if brack in openB:
+                stack.append(brack)
+            elif stack and (brack in closeB):
+                if (brack == ")" and stack[-1]=="(") or (brack=="]" and stack[-1]=="[") or (brack=="}" and stack[-1]=="{"):
+                    stack.pop()
                 else:
                     return False
+            else:
+                return False
         
         
         return len(stack)==0
+                
+                
+                    
