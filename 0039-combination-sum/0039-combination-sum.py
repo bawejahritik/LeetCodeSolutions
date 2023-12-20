@@ -7,18 +7,12 @@ class Solution:
                 res.append(path)
                 return
                 
-            if sumYet > target or idx == len(candidates):
-                return
-            
-            backtracking(idx, sumYet+candidates[idx], path + [candidates[idx]])
-            backtracking(idx+1, sumYet, path)
-            backtracking(idx+1, sumYet+candidates[idx], path+[candidates[idx]])
+            for i in range(idx, len(candidates)):
+                candidate = candidates[i]
+                if sumYet + candidate <= target:
+                    backtracking(i, sumYet + candidate, path+[candidate])
             
         
         backtracking(0, 0, [])
         
-        temp = []
-
-        [temp.append(x) for x in res if x not in temp]
-        
-        return temp
+        return res
