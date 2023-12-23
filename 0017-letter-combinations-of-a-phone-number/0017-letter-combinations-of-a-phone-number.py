@@ -1,5 +1,7 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        if digits == "":
+            return []
         KEYBOARD = {
             '2': 'abc',
             '3': 'def',
@@ -12,11 +14,9 @@ class Solution:
                     }
         
         def dfs(count, path):
-            if count == len(digits) and count != 0:
+            if count == len(digits):
                 res.append("".join(path))
-                return
-            if count == 0 and count==len(digits):
-                return
+                return 
             
             for letter in KEYBOARD[digits[count]]:
                 dfs(count+1, path+[letter])
