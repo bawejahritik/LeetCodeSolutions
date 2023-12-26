@@ -1,13 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        ans = [0]*2
         counter = {}
         
-        for i,num in enumerate(nums):
-            diff = target-num
-            if diff in counter:
-                return [i, counter[diff]]
+        for i, num in enumerate(nums):
+            if target-num in counter.keys():
+                return [i, counter[target-num]]
+            
             counter[num] = i
         
-        
-        return ans
+        return [0, 0]
