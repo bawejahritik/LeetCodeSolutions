@@ -8,10 +8,7 @@ class Solution:
         
         
         for key in freq.keys():
-            if freq[key] % (len(words)) == 0:
-                continue
-            else:
+            if freq[key] % (len(words)) != 0:
                 return False
-        
         
         return True
