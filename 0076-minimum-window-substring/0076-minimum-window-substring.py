@@ -1,78 +1,39 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t) or t == "": return ""
         
-        if t == "":
-            return t
+        freqT = {}
         
-        listT = {}
+        for i in t:
+            freqT[i] = 1 + freqT.get(i, 0)
+            
+        have, need = 0 , len(freqT)
+        freqS = {}
         
-        for i in range(len(t)):
-            listT[t[i]] = 1 + listT.get(t[i], 0)
-        
-        listS = {}
-        left = 0
         res, resLen = [-1, -1], float("infinity")
-        have, need = 0, len(listT)
+        
+        left = 0
         
         for right in range(len(s)):
-            listS[s[right]] = 1 + listS.get(s[right], 0)
+            freqS[s[right]] = 1 + freqS.get(s[right], 0)
             
-            if s[right] in listT and listS[s[right]] == listT[s[right]]:
+            if s[right] in freqT and freqS[s[right]] == freqT[s[right]]:
                 have += 1
             
-            while(have == need):
+            while have == need:
                 if right-left+1 < resLen:
-                    resLen = right-left+1
                     res[0] = left
                     res[1] = right
-                    
-                listS[s[left]] -= 1
+                    resLen = right-left+1
                 
-                if s[left] in listT and listS[s[left]] < listT[s[left]]:
+                freqS[s[left]] -= 1
+                
+                if s[left] in freqT and freqS[s[left]] < freqT[s[left]]:
                     have -= 1
                 
                 left += 1
+                
+            
+        return s[res[0]:res[1]+1] if resLen != float("infinity") else ""
         
         
-        l, r = res 
-        
-        return s[l:r+1] if resLen != float("infinity") else ""
-    
-        
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
