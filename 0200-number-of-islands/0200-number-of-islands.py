@@ -1,35 +1,46 @@
-from collections import deque
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        res = 0
-        visited = set()
+        
+        ROWS, COLS = len(grid), len(grid[0])
+        
+        def get_neighbors(coord):
+            r, c = coord
+            
+            neighbors = []
+            
+            delta_row = [1, 0, -1, 0]
+            delta_col = [0, 1, 0, -1]
+            
+            for i in range(len(delta_row)):
+                nr = r + delta_row[i]
+                nc = c + delta_col[i]
+                
+                if (0 <= nr < ROWS and 0 <= nc < COLS):
+                    neighbors.append((nr, nc))
+            
+            return neighbors
         
         def bfs(coord):
-            r, c = coord
-            q = deque([coord])
-            visited.add((r, c))
+            q = collections.deque([coord])
+            
             while len(q) > 0:
-                
                 curr = q.popleft()
-                cr, cc = curr
-                coordinates = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                r, c = curr
                 
-                for dr, dc in coordinates:
-                    nr = cr + dr
-                    nc = cc + dc
+                for neighbor in get_neighbors(curr):
+                    nr, nc = neighbor
+                    if grid[nr][nc] == "0":
+                        continue
                     
-                    if 0<=nr<rows and 0<=nc<cols and (nr, nc) not in visited and grid[nr][nc] == "1":
-                        q.append((nr, nc))
-                        visited.add((nr, nc))
-                                
+                    q.append((nr, nc))
+                    grid[nr][nc] = "0"
         
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j] == "1" and (i, j) not in visited:
+        res = 0
+        
+        for i in range(ROWS):
+            for j in range(COLS):
+                if grid[i][j] == "1":
                     bfs((i, j))
                     res += 1
         
-        
-        return res           
+        return res
