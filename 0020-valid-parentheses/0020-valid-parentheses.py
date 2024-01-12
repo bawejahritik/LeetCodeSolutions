@@ -1,20 +1,25 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        openB = "({["
-
         stack = []
+        openP = '({['
         
-        for b in s:
-            if b in openB:
-                stack.append(b)
-            elif b==")" and stack and stack[-1]=="(":
-                stack.pop()
-            elif b=="}" and stack and stack[-1]=="{":
-                stack.pop()
-            elif b=="]" and stack and stack[-1]=="[":
-                stack.pop()
-            else:
-                return False
+        for i in s:
+            if i in openP:
+                stack.append(i)
+            elif i == ')':
+                if stack and stack[-1] == '(':
+                    stack.pop()
+                else:
+                    return False
+            elif i == ']':
+                if stack and stack[-1] == '[':
+                    stack.pop()
+                else:
+                    return False
+            elif i == '}':
+                if stack and stack[-1] == '{':
+                    stack.pop()
+                else:
+                    return False
         
-        return len(stack)==0
-                
+        return len(stack) == 0
