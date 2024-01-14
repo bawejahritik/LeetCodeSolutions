@@ -1,12 +1,12 @@
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
-        list1 = Counter(word1)
-        list2 = Counter(word2)
+        if len(word1) != len(word2):
+            return False
         
-        list1 = sorted(list1.values())
-        list2 = sorted(list2.values())
+        freq1 = Counter(word1)
+        freq2 = Counter(word2)
         
-        set1 = set(word1)
-        set2 = set(word2)
+        v1 = sorted([i for i in freq1.values()])
+        v2 = sorted([i for i in freq2.values()])
         
-        return (list1==list2 and set1==set2)
+        return v1==v2 and freq1.keys()==freq2.keys()
