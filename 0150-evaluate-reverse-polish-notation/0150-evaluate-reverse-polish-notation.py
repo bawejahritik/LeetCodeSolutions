@@ -5,16 +5,16 @@ class Solution:
         for token in tokens:
             if token == "+":
                 stack.append(stack.pop() + stack.pop())
-            elif token == "*":
-                stack.append(stack.pop()*stack.pop())
             elif token == "-":
-                val1 = stack.pop()
-                val2 = stack.pop()
-                stack.append(val2-val1)
+                e1 = stack.pop()
+                e2 = stack.pop()
+                stack.append(e2 - e1)
+            elif token == "*":
+                stack.append(stack.pop() * stack.pop())
             elif token == "/":
-                val1 = stack.pop()
-                val2 = stack.pop()
-                stack.append(int(val2/val1))
+                e1 = stack.pop()
+                e2 = stack.pop()
+                stack.append(int(e2/e1))
             else:
                 stack.append(int(token))
         
