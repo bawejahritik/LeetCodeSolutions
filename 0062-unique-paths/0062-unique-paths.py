@@ -1,18 +1,20 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        temp = [0]*n
-        matrix = [temp]*m
+        grid = [[-1 for _ in range(n)] for _ in range(m)]
         
-        for i in range(0, n):
-            matrix[0][i] = 1
+        grid[0][0] = 1
         
-        for i in range(0, m):
-            matrix[i][0] = 1
+        for i in range(m):
+            for j in range(n):
+                if i == j == 0:
+                    continue
+                elif i == 0:
+                    grid[i][j] = 1
+                elif j == 0:
+                    grid[i][j] = 1
+                else:
+                    grid[i][j] = grid[i-1][j] + grid[i][j-1]
         
-        for i in range(1, m):
-            for j in range(1, n):
-                matrix[i][j] = matrix[i-1][j] + matrix[i][j-1]
         
         
-        return matrix[m-1][n-1]
-            
+        return grid[m-1][n-1]
