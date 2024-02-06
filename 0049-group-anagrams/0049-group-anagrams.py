@@ -1,15 +1,13 @@
-class Solution:  
+class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        similar = collections.defaultdict(list)
+        mapper = {}
         
-        for str in strs:
-            temp = [0]*26
-            for s in str:
-                temp[ord(s)-ord('a')] += 1
-            
-            similar[tuple(temp)].append(str)
+        for s in strs:
+            freq = [0]*26
+            for c in s:
+                freq[ord(c) - ord('a')] += 1
+            temp = mapper.get(tuple(freq), [])
+            temp.append(s)
+            mapper[tuple(freq)] = temp
         
-        
-        
-        
-        return similar.values()
+        return mapper.values()
