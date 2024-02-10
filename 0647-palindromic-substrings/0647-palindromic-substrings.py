@@ -2,10 +2,17 @@ class Solution:
     def countSubstrings(self, s: str) -> int:
         count = 0
         
-        for start in range(0, len(s)):
-            for end in range(start, len(s)):
-                curr = s[start:end+1]
-                if curr == curr[::-1]:
-                    count+=1
+        for i in range(len(s)):
+            l = r = i
+            while l>=0 and r<len(s) and s[l] == s[r]:
+                count+=1
+                l-=1
+                r+=1
+            l = i
+            r = i+1
+            while l>=0 and r<len(s) and s[l] == s[r]:
+                count+=1
+                l-=1
+                r+=1
         
         return count
