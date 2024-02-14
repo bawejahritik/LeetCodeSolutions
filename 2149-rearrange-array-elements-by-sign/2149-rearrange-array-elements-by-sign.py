@@ -8,8 +8,9 @@ class Solution:
                 negatives.append(num)
             else:
                 positives.append(num)
-        res = []
+        curr = 0
         for i in range(len(negatives)):
-            res.append(positives[i])
-            res.append(negatives[i])
-        return res
+            nums[curr] = positives[i]
+            nums[curr+1] = negatives[i]
+            curr += 2
+        return nums
