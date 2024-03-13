@@ -4,7 +4,6 @@ class Solution:
         right = 0
         
         while left != 0:
-            print(left, right)
             right = right + n
             if left == right:
                 return n
